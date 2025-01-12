@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPatients } from "../../services/api";
+import { createPatient, getPatients } from "../../services/api";
 import { Patient } from "./Patient.type";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,21 @@ const PatientsTable = styled.table`
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  @media (max-width: 600px) {
+    thead,
+    th {
+      display: none;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+  }
 `;
 
 const Patients = () => {
@@ -27,8 +42,20 @@ const Patients = () => {
     fetchPatients();
   }, []);
 
+  // @TODO: Implement with user input (not dummy data)
+  const addPatient = async () => {
+    const newPatient = await createPatient({
+      name: "Test McTestFace",
+      dateOfBirth: "1990-01-01",
+      medicalCondition: "Healthy",
+      dateOfNextAppointment: "2025-01-01",
+    });
+    setPatients([...patients, newPatient]);
+  };
+
   return (
     <div>
+      <button onClick={addPatient}>Add New Patient</button>
       <PatientsTable>
         <thead>
           <tr>

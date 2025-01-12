@@ -6,24 +6,24 @@ import {
   Navigate,
 } from "react-router-dom";
 import Patients from "./components/patients/Patients";
-import PatientDetails from "./components/patients/PatientDetails"; // Create this component
+import PatientDetails from "./components/patients/PatientDetails";
 
 const NavBar = styled.nav`
   background-color: #006881;
   color: white;
-  padding: 10px;
+  padding: 1rem;
   grid-area: nav;
 `;
 
-const Content = styled.div`
+const Content = styled.main`
   grid-area: content;
-  padding: 20px;
+  padding: 1rem;
 `;
 
 const Footer = styled.footer`
   background-color: #006881;
   color: white;
-  padding: 10px;
+  padding: 1rem;
   text-align: center;
   grid-area: footer;
 `;

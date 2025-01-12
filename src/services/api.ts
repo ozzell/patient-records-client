@@ -17,11 +17,11 @@ export const getPatientById = async (id: string) => {
   return response.json();
 };
 
-export const addPatient = async (patient: {
+export const createPatient = async (patient: {
   name: string;
   dateOfBirth: string;
   medicalCondition: string;
-  nextAppointment?: string;
+  dateOfNextAppointment: string;
 }) => {
   const response = await fetch(`${VITE_API_BASE_URL}`, {
     method: "POST",
@@ -29,6 +29,38 @@ export const addPatient = async (patient: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(patient),
+  });
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+  return response.json();
+};
+
+export const updatePatient = async (
+  id: string,
+  patient: {
+    name: string;
+    dateOfBirth: string;
+    medicalCondition: string;
+    nextAppointment?: string;
+  }
+) => {
+  const response = await fetch(`${VITE_API_BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(patient),
+  });
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+  return response.json();
+};
+
+export const removePatient = async (id: string) => {
+  const response = await fetch(`${VITE_API_BASE_URL}/${id}`, {
+    method: "DELETE",
   });
   if (!response.ok) {
     throw new Error(`Error: ${response.statusText}`);
