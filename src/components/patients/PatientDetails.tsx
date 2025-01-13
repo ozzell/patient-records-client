@@ -2,16 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Patient } from "./Patient.type";
 import { getPatientById, removePatient } from "../../services/api";
-import styled from "styled-components";
-
-const ActionsContainer = styled.div`
-  position: absolute;
-  right: 0;
-  margin: 0 1rem 0 0;
-  display: flex;
-  gap: 10px;
-`;
-
+import { ActionsContainer } from "./Patient.style";
 const PatientDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
@@ -33,12 +24,11 @@ const PatientDetails = () => {
     }
 
     if (confirm("Are you sure you want to delete this patient?")) {
-      await removePatient(id);
-      navigate("/");
+      const response = await removePatient(id);
+      if (response) navigate("/");
     }
   };
 
-  // @TODO: Implement for real
   const handleEdit = () => {
     if (!id) {
       return;

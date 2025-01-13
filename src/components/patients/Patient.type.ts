@@ -5,3 +5,5 @@ export interface Patient {
   medicalCondition: string;
   dateOfNextAppointment: string;
 }
+
+export type EditablePatient = Omit<Patient, "id">;

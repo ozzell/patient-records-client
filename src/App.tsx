@@ -1,40 +1,24 @@
-import styled from "styled-components";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
+  NavLink,
 } from "react-router-dom";
 import Patients from "./components/patients/Patients";
 import PatientDetails from "./components/patients/PatientDetails";
+import PatientEdit from "./components/patients/PatientEdit";
+import { Content, Footer, GridContainer, NavBar } from "./App.style";
+import styled from "styled-components";
 
-const NavBar = styled.nav`
-  background-color: #006881;
+const HeaderLink = styled(NavLink)`
   color: white;
-  padding: 1rem;
-  grid-area: nav;
-`;
+  text-decoration: none;
 
-const Content = styled.main`
-  grid-area: content;
-  padding: 1rem;
-`;
-
-const Footer = styled.footer`
-  background-color: #006881;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  grid-area: footer;
-`;
-
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-areas:
-    "nav"
-    "content"
-    "footer";
-  grid-template-rows: auto 1fr auto;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 `;
 
 const App = () => {
@@ -42,13 +26,17 @@ const App = () => {
     <Router>
       <GridContainer>
         <NavBar>
-          <h1>Patient Records</h1>
+          <h1>
+            <HeaderLink to="/patients">Patient Records</HeaderLink>
+          </h1>
         </NavBar>
         <Content>
           <Routes>
             <Route path="/patients/:id" element={<PatientDetails />} />
             <Route path="/patients" element={<Patients />} />
             <Route path="/" element={<Navigate to="/patients" />} />
+            <Route path="/patients/create" element={<PatientEdit />} />
+            <Route path="/patients/:id/edit" element={<PatientEdit />} />
           </Routes>
         </Content>
         <Footer>
