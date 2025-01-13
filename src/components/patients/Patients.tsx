@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getPatients } from "../../services/api";
 import { Patient } from "./Patient.type";
 import { NavLink, useNavigate } from "react-router-dom";
-import { PatientsTable } from "./Patient.style";
+import { PatientsTable, UtilitiesContainer } from "./Patient.style";
+import Search from "./Search";
 
 const Patients = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
@@ -21,7 +22,10 @@ const Patients = () => {
 
   return (
     <div>
-      <button onClick={handleAddPatient}>Add New Patient</button>
+      <UtilitiesContainer>
+        <button onClick={handleAddPatient}>Add New Patient</button>
+        <Search applySearchResults={setPatients} />
+      </UtilitiesContainer>
       <PatientsTable>
         <thead>
           <tr>

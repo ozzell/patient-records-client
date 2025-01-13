@@ -42,7 +42,11 @@ const PatientEdit = () => {
 
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate("/patients");
+    if (id) {
+      navigate(`/patients/${id}`);
+    } else {
+      navigate("/patients");
+    }
   };
 
   const handleInputChange = useCallback(
@@ -58,10 +62,8 @@ const PatientEdit = () => {
   return (
     <PatientForm onSubmit={handleSubmitPatient} action="post">
       <ActionsContainer>
-        <button onClick={handleCancel} tabIndex={5}>
-          Cancel
-        </button>
-        <button role="submit" type="submit" tabIndex={6}>
+        <button onClick={handleCancel}>Cancel</button>
+        <button role="submit" type="submit">
           Save
         </button>
       </ActionsContainer>
@@ -75,7 +77,6 @@ const PatientEdit = () => {
           type="text"
           value={patient.name}
           onChange={handleInputChange}
-          tabIndex={1}
         />
       </p>
       <p>
@@ -88,7 +89,6 @@ const PatientEdit = () => {
           type="date"
           value={patient.dateOfBirth}
           onChange={handleInputChange}
-          tabIndex={2}
         />
       </p>
       <p>
@@ -100,7 +100,6 @@ const PatientEdit = () => {
           type="text"
           value={patient.medicalCondition}
           onChange={handleInputChange}
-          tabIndex={3}
         />
       </p>
       <p>
@@ -113,7 +112,6 @@ const PatientEdit = () => {
           type="datetime-local"
           value={patient.dateOfNextAppointment}
           onChange={handleInputChange}
-          tabIndex={4}
         />
       </p>
     </PatientForm>

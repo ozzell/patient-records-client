@@ -58,3 +58,42 @@ export const PatientsTable = styled.table`
     }
   }
 `;
+
+export const UtilitiesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 3rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+export const SearchContainer = styled.form`
+  display: flex;
+  flex: 3 1 auto;
+  gap: 1rem;
+  input {
+    flex: 3 1 auto;
+    padding: 0.5rem 0;
+  }
+  button {
+    flex: 1 1 auto;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+export const VisuallyHiddenLabel = styled.label`
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+`;

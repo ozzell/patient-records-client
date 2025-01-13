@@ -98,3 +98,15 @@ export const removePatient = async (id: string) => {
     handleErrors(error);
   }
 };
+
+export const searchPatients = async (query: string) => {
+  try {
+    const response = await fetch(`${VITE_API_BASE_URL}/search?s=${query}`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json();
+  } catch (error) {
+    handleErrors(error);
+  }
+};
