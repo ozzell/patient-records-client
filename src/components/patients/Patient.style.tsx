@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const primaryColor = "#006881";
+
 export const ActionsContainer = styled.div`
   position: absolute;
   right: 0;
@@ -67,6 +69,7 @@ export const UtilitiesContainer = styled.div`
 
   @media (max-width: 600px) {
     flex-direction: column;
+    gap: 1rem;
   }
 `;
 
@@ -74,12 +77,32 @@ export const SearchContainer = styled.form`
   display: flex;
   flex: 3 1 auto;
   gap: 1rem;
+
   input {
     flex: 3 1 auto;
     padding: 0.5rem 0;
+    border-radius: 4px;
+    border: 1px solid ${primaryColor};
+    font-size: 1rem;
   }
-  button {
+
+  input[type="text"] {
+    padding-left: 0.5rem;
+  }
+
+  input[type="submit"] {
     flex: 1 1 auto;
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: black;
+    font-weight: 500;
+    border-color: ${primaryColor};
+
+    &:hover {
+      background-color: ${primaryColor};
+      color: white;
+    }
   }
 
   @media (max-width: 600px) {
