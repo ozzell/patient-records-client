@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Patient } from "./Patient.type";
 import { getPatientById, removePatient } from "../../services/api";
 import { ActionsContainer } from "./Patient.style";
+
 const PatientDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
@@ -41,10 +42,14 @@ const PatientDetails = () => {
   }
 
   return (
-    <div>
+    <div data-testid="patient-details-container">
       <ActionsContainer>
-        <button onClick={handleEdit}>Edit</button>
-        <button onClick={handleRemove}>Delete</button>
+        <button data-testid="edit-btn" onClick={handleEdit}>
+          Edit
+        </button>
+        <button data-testid="delete-btn" onClick={handleRemove}>
+          Delete
+        </button>
       </ActionsContainer>
       <h2>{patient.name}</h2>
       <p>Date of Birth: {patient.dateOfBirth}</p>
